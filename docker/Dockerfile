@@ -1,9 +1,10 @@
-FROM php:7.2-apache
+#FROM php:7.2-apache
+FROM php:7.3.4-apache
 COPY ./php/php.ini /usr/local/etc/php/
 COPY ./apache/*.conf /etc/apache2/sites-enabled/
 
 RUN apt-get update \
-  && apt-get install -y zlib1g-dev libpq-dev unzip vim \
+  && apt-get install -y zlib1g-dev libpq-dev unzip libzip-dev vim \
   && docker-php-ext-install zip pdo_mysql mysqli \
   && curl -sL https://deb.nodesource.com/setup_11.x | bash - \
   && apt-get install -y nodejs \
